@@ -67,7 +67,7 @@ app.post("/upload", upload.single("pdf"), async (req, res) => {
   // const aiSum = await AiSummary(data.text)
   // console.log(aiSum);
   data = data.text.slice(0, 5980) 
-  res.json({ fileUrl: `http://localhost:${PORT}/uploads/${req.file.filename}`, fileName: req.file.filename, pdfText: data });
+  res.json({ fileUrl: `http://fitnessbackend-production-630b.up.railway.app:${PORT}/uploads/${req.file.filename}`, fileName: req.file.filename, pdfText: data });
 });
 
 
