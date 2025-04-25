@@ -39,7 +39,8 @@ app.use(express.static("public"))
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+     origin: "https://iridescent-biscotti-990bee.netlify.app/login",
     credentials: true,
   })
 );
