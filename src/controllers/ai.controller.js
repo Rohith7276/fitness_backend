@@ -49,21 +49,19 @@ export const AiChat = async (req, res) => {
 }
 
 // export const AiSummary = async(youtubeUrl, pdfData)=>{
-export const AiSummary = async (req, res) => {
-  try { 
-    const { id:youtubeUrl } = req.params;
-    console.log(youtubeUrl)
-    const youtubeId = youtubeUrl
-    async function getYouTubeTranscript(videoId) { 
-      const transcript = await YoutubeTranscript.fetchTranscript(videoId);
-      return transcript.map(entry => entry.text).join(" ");
-    }
-     
-    const text = await getYouTubeTranscript(youtubeId) 
-    console.log(text)
-    // const response = await getResponse("here the notes\n" + text + "\n give me some questions to solve");
-    // console.log(response)
-    res.status(200).json({ text });
+export const AiSummary = async (x) => {
+  try {
+    // const youtubeId = youtubeUrl.split('v=')[1].split('&')[0]; 
+    // async function getYouTubeTranscript(videoId) { 
+    //     const transcript = await YoutubeTranscript.fetchTranscript(videoId);
+    //     return transcript.map(entry => entry.text).join(" ");
+    // }
+
+    // const text = await getYouTubeTranscript(youtubeId)
+    const text = x
+    const response = await getResponse("here the notes\n" + text + "\n give me some questions to solve");
+    console.log(response)
+    return response;
   }
   catch (error) {
     console.log("Error in ai summary controller", error?.message);
@@ -78,7 +76,7 @@ export const streamAi = async (req, res) => {
     // let text = `You are an chat app Rapid AI named Rapid AI. A user named ${user} sent ${input} to you, reply accordingly`;
    
 
-    const response = await getResponse(input + "\nhere is the text for reference:\n" + data  );
+    const response = await getResponse(input + "\nhere is the pdf text for reference:\n" + data  );
 
     const newMessage = new Message({
       text: response,
